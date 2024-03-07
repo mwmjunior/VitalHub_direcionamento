@@ -9,21 +9,21 @@ import { useState } from "react";
 
 const cardsMedic = [{
     id: '1', img: require('../../assets/foto-de-perfil-medico.png'),
-    situation: 'pendente', name: 'Dr.Claudio', age: '22 anos',
-    query: 'Rotina', schedule: '14:00', email: 'doutor.claudio@gmail.com',
-    crm: 'CRM-15286', specialty: 'Clinico Geral'
+    situation: 'pendente', name: 'Dra. Isabel', age: '40 anos',
+    query: 'Emergência', schedule: '08:30', email: 'doutora.isabel@gmail.com',
+    crm: 'CRM-25671', specialty: 'Cardiologia'
 },
 {
-    id: '2', 
+    id: '2',
     img: require('../../assets/foto-de-perfil-medico.png'),
-    situation: 'realizada', 
-    name: 'Dr. Claudio', 
-    age: '22 anos',
-    query: 'Rotina', 
-    schedule: '14:00', 
-    email: 'doutor.claudio@gmail.com',
-    crm: 'CRM-15286', 
-    specialty: 'Clínico Geral'
+    situation: 'realizada',
+    name: 'Dr. Marcos',
+    age: '35 anos',
+    query: 'Ortopedia',
+    schedule: '10:00',
+    email: 'dr.marcos@gmail.com',
+    crm: 'CRM-38192',
+    specialty: 'Ortopedia'
 }
 ]
 

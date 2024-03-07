@@ -1,9 +1,9 @@
 //importar o recurso do button tab
-import { ContentIcon, TextIcon } from './Styles'
+import { ContentIcon, TextIcon } from './Style'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { UserProfile } from "../UserProfile/UserProfile";
-import { HomeMedic } from "../HomeMedic/HomeMedic";
-import { HomePatient } from '../HomePatient/HomePatient';
+import { UserProfile } from "../PerfilPaciente/UserProfile";
+import { HomeMedic } from "../HomeMedico/HomeMedico";
+import { HomePatient } from '../HomePaciente/HomePaciente';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 
 const BottomTab = createBottomTabNavigator();

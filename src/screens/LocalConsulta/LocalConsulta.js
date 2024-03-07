@@ -18,7 +18,7 @@ export const ClinicLocation = ({navigation}) => {
 
                 <GenericInput
                     textLabel={'Endereço'}
-                    placeholder={'Rua Vicenso Silva, 987'}
+                    placeholder={'Rua Manoel da Nobrega, 444'}
                 />
                 <GenericProfileInputContainerRow>
                     <GenericProfileAddressInput
@@ -27,8 +27,8 @@ export const ClinicLocation = ({navigation}) => {
                     />
 
                     <GenericProfileAddressInput
-                        textLabel={'Bairro'}
-                        placeholder={'Moema-SP'}
+                        textLabel={'Zona 01'}
+                        placeholder={'Cianorte-Pr'}
                     />
                 </GenericProfileInputContainerRow>
 

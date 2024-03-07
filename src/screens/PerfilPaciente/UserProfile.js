@@ -19,25 +19,25 @@ export const UserProfile = ({ navigation }) => {
 
                 <GenericInput
                     textLabel={'Data de Nascimento: '}
-                    placeholder={'04/05/1999'}
+                    placeholder={'05/10/1995'}
                 />
                 <GenericInput
                     textLabel={'CPF: '}
-                    placeholder={'859********'}
+                    placeholder={'756********'}
                 />
                 <GenericInput
                     textLabel={'Endereço: '}
-                    placeholder={'Rua Vicenso Silva, 987'}
+                    placeholder={'Rua Vitor Jose de Castro, 50'}
                 />
 
                 <GenericProfileInputContainerRow>
                     <GenericProfileAddressInput
                         textLabel={'Cep: '}
-                        placeholder={'06548-909'}
+                        placeholder={'09041-50'}
                     />
                     <GenericProfileAddressInput
                         textLabel={'Cidade: '}
-                        placeholder={'Moema-SP'}
+                        placeholder={'Sao Paulo-SP'}
                     />
                 </GenericProfileInputContainerRow>
 

@@ -8,10 +8,10 @@ import { Logo } from "../../components/Logo/Styles";
 import { useState } from "react";
 
 export const Login = ({ navigation , checkHome}) => {
-    const [userEmail, setUserEmail ] = useState('medico@email.com')
+    const [userEmail, setUserEmail ] = useState('dr.marcos@gmail.com')
 
     function Login() {
-        if (userEmail === 'medico@email.com') {
+        if (userEmail === 'dr.marcos@gmail.com') {
             checkHome ='HomeMedic'
         } else {
             checkHome = 'HomePatient'
@@ -30,7 +30,7 @@ export const Login = ({ navigation , checkHome}) => {
                 onChangeText={(txt) => setUserEmail(txt)}
             />
             <Input placeholder={'Senha'}
-                value={'1234'}
+                value={'123'}
                 secureTextEntry={false} 
             />
 

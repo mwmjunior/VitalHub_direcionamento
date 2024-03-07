@@ -1,21 +1,21 @@
 import { Quicksand_500Medium, Quicksand_400Regular, Quicksand_600SemiBold } from '@expo-google-fonts/quicksand';
-import { ClinicLocation } from './src/screens/ClinicLocation/ClinicLocation';
+import { ClinicLocation } from './src/screens/LocalConsulta/LocalConsulta';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { MedicalRecord } from './src/screens/MedicalRecord/MedicalRecord';
-import { ResetPassword } from './src/screens/ResetPassword/ResetPassword';
-import { ClinicSelect } from './src/screens/ClinicSelect/ClinicSelect';
-import { MedicSelect } from './src/screens/MedicSelect/MedicSelect';
-import { MedicRecord } from './src/screens/MedicRecord/MedicRecord';
-import { UserProfile } from './src/screens/UserProfile/UserProfile';
-import { HomePatient } from './src/screens/HomePatient/HomePatient'
-import { DateSelect } from './src/screens/DateSelect/DateSelect';
-import { Navegation } from './src/screens/Navegation/Navegation';
+import { MedicalRecord } from './src/screens/PacienteProntuario/PacienteProntuario';
+import { ResetPassword } from './src/screens/RedefinirSenha/RedefinirSenha';
+import { ClinicSelect } from './src/screens/SelecionarClinica/SelecionarClinica';
+import { MedicSelect } from './src/screens/SelecionarMedico/SelecionarMedico';
+import { MedicRecord } from './src/screens/MedicoProntuario/MedicoProntuario';
+import { UserProfile } from './src/screens/PerfilPaciente/UserProfile';
+import { HomePatient } from './src/screens/HomePaciente/HomePaciente'
+import { DateSelect } from './src/screens/SelecionarData/SelecionarData';
+import { Navegation } from './src/screens/Navegacao/Navegacao';
 import { NavigationContainer } from '@react-navigation/native';
-import { EmailCode } from './src/screens/EmailCode/EmailCode';
-import { HomeMedic } from './src/screens/HomeMedic/HomeMedic';
-import { Register } from './src/screens/Register/Register';
+import { EmailCode } from './src/screens/VerifiqueSeuEmail/VerifiqueSeuEmail';
+import { HomeMedic } from './src/screens/HomeMedico/HomeMedico';
+import { Register } from './src/screens/CriarConta/CriarConta';
 import { Login } from './src/screens/Login/Login';
-import { Reset } from './src/screens/Reset/Reset';
+import { Reset } from './src/screens/RecuperarSenha/RecuperarSenha';
 import { StatusBar } from 'expo-status-bar';
 
 //Instancia do stack navigator
