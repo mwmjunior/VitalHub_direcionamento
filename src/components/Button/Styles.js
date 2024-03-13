@@ -49,3 +49,22 @@ export const ButtonMedicRecord = styled(Button)`
     background-color: #49B3BA;
     align-items: center;
 `
+export const ButtonRouteMap = styled.TouchableOpacity.attrs({
+    underlayColor: 'transparent'
+})`
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #49B3BA;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+    bottom: 60px;
+    
+`
+export const ButtonCancelRouteMap = styled(ButtonRouteMap)`
+    background-color: #C81D25;
+    bottom: 120px;
+    
+`
