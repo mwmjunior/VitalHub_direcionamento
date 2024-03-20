@@ -19,3 +19,11 @@ export const LinkAccount = styled.Text`
     text-decoration: underline;
     text-decoration-color: #4d659d;
 `
+
+export const CancelAppointment = styled.Text`
+color: #344F8F;
+text-decoration: underline;
+font-family: MontserratAlternates_600SemiBold;
+margin-bottom: 80px;
+margin-top: 40px;
+`

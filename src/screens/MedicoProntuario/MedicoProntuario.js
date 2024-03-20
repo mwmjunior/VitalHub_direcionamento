@@ -9,7 +9,22 @@ import { CardLinkText } from "../../components/Card/Style";
 import { Title } from "../../components/Title/Styles";
 
 
-export const MedicRecord = ({ navigation }) => {
+
+
+
+export const MedicRecord = ({ navigation, route }) => {
+    const { photoUri } = route.params || {};
+    const[isPhoto,setIsPhoto] = useState(true)
+
+    function onPressPhoto() {
+        navigation.navigate("CameraScreen");
+        setIsPhoto(true)
+    }
+
+    function onPressCancel() {
+        setIsPhoto(false);
+        route.params = null
+    }
     return (
         <ContainerScrollView>
             <Container>
