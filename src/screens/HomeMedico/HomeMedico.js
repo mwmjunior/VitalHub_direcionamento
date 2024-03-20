@@ -5,6 +5,8 @@ import { Container } from "../../components/Container/Styles"
 import { Calendar } from "../../components/Calendar/Calendar";
 import { Header } from "../../components/Header/Header";
 import { useState } from "react";
+import { StatusBar } from "react-native";
+import * as Notifications from 'expo-notifications'
 
 const cardsPatient = [
     {
@@ -36,6 +38,7 @@ const cardsPatient = [
 
 export const HomeMedic = ({navigation}) => {
     const [statusLista, setStatusLista] = useState("pendente");
+    const [modalVisible, setModalVisible] = useState(false);
     return (
         <Container>
             <Header 

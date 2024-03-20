@@ -22,8 +22,48 @@ import { UserProfilePhotoCard } from "../UserProfilePhoto/Styles";
 import { TitleCard } from "../Title/Styles";
 import { useState } from "react";
 
+import * as Notifications from 'expo-notifications'
+
+Notifications.requestPermissionsAsync();
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+})
+
 export const AppointmentCard = ({ id, img, name, navi, age, query, schedule, email, situation }) => {
     const [modalVisible, setModalVisible] = useState(false);
+
+    async function handleClose(screen, props) {
+        setModalVisible(false)
+        navi.navigate(screen, props)
+    }
+
+    const handleCallNotification = async () => {
+
+        const {status} = await Notifications.getPermissionsAsync();
+    
+        //verifica se o usuário concedeu permissão para notificações
+        if (status !== "granted") {
+          alert("Você não deixou as notificações ativas.")
+          return;
+        }
+    
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: "Consulta cancelada!",
+            body: "Sua consulta marcada foi cancelada",
+            sound: 'default',
+          },
+          trigger: null
+        })
+      }
+    
+
     return (
         <CardContainer>
             <UserProfilePhotoCard source={img} />
@@ -46,6 +86,8 @@ export const AppointmentCard = ({ id, img, name, navi, age, query, schedule, ema
                     <ModalAppointment
                         visible={modalVisible}
                         onPressCancel={() => setModalVisible(false)}
+                        onPressConfirm={() => { handleClose('Main') 
+                        handleCallNotification()}}
                         animation={'fade'}
                         transparent={true}
                         id={id}
@@ -63,10 +105,9 @@ export const AppointmentCard = ({ id, img, name, navi, age, query, schedule, ema
                     <ModalAppointment
                         visible={modalVisible}
                         onPressCancel={() => setModalVisible(false)}
-                        onPressConfirm={() => {
-                            setModalVisible(false)
-                            navi.navigate("MedicalRecord", { userImg: img, userName: name, userAge: age, userEmail: email })
-                        }}
+                        onPressConfirm={() => handleClose("MedicalRecord",
+                            { userImg: img, userName: name, userAge: age, userEmail: email })
+                        }
                         animation={'fade'}
                         transparent={true}
                         id={id}
@@ -85,8 +126,36 @@ export const AppointmentCard = ({ id, img, name, navi, age, query, schedule, ema
 export const AppointmentMedicCard = ({ id, img, name, age, navi, query, crm, specialty, schedule, email, situation }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [modalLocalVisible, setModalLocalVisible] = useState(false);
+
+    async function handleClose(screen, props) {
+        setModalVisible(false)
+        setModalLocalVisible(false)
+        navi.navigate(screen, props)
+    }
+
+    const handleCallNotification = async () => {
+
+        const {status} = await Notifications.getPermissionsAsync();
+    
+        //verifica se o usuário concedeu permissão para notificações
+        if (status !== "granted") {
+          alert("Você não deixou as notificações ativas.")
+          return;
+        }
+    
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: "Consulta cancelada!",
+            body: "Sua consulta marcada foi cancelada",
+            sound: 'default'
+          },
+          trigger: null
+        })
+      }
+
+    
     return (
-        <CardMedicContainer onPress={() => setModalLocalVisible(true)}>
+        <CardMedicContainer onPress={() => { situation === 'pendente' ? setModalLocalVisible(true) : null }}>
             <>
                 <UserProfilePhotoCard source={img} />
                 <CardContainerText>
@@ -95,10 +164,7 @@ export const AppointmentMedicCard = ({ id, img, name, age, navi, query, crm, spe
                     <ModalLocalAppointment
                         visible={modalLocalVisible}
                         onPressCancel={() => setModalLocalVisible(false)}
-                        onPressConfirm={() => {
-                            setModalLocalVisible(false)
-                            navi.navigate("ClinicLocation")
-                        }}
+                        onPressConfirm={() => handleClose('ClinicLocation')}
                         animation={'fade'}
                         transparent={true}
                         id={id}
@@ -122,7 +188,9 @@ export const AppointmentMedicCard = ({ id, img, name, age, navi, query, crm, spe
                         <CardLinkText onPress={() => setModalVisible(true)}> Cancelar </CardLinkText>
                         <ModalAppointment
                             visible={modalVisible}
-                            onPress={() => setModalVisible(false)}
+                            onPressCancel={() => setModalVisible(false)}
+                            onPressConfirm={() => {handleClose('Main') 
+                            handleCallNotification()}}
                             animation={'fade'}
                             transparent={true}
                             id={id}
@@ -135,21 +203,7 @@ export const AppointmentMedicCard = ({ id, img, name, age, navi, query, crm, spe
                     </>
                 ) : (null)}
                 {situation == 'realizada' ? (
-                    <>
-                        <RealizedCardLinkText onPress={() => setModalVisible(true)}>Ver Prontuário</RealizedCardLinkText>
-                        <ModalAppointment
-                            visible={modalVisible}
-                            onPress={() => setModalVisible(false)}
-                            animation={'fade'}
-                            transparent={true}
-                            id={id}
-                            img={img}
-                            name={name}
-                            age={age}
-                            email={email}
-                            situation={situation}
-                        />
-                    </>
+                    <RealizedCardLinkText onPress={() => navi.replace('MedicRecord')}>Ver Prontuário</RealizedCardLinkText>
                 ) : (<CardLinkText>           </CardLinkText>)}
             </>
         </CardMedicContainer >
