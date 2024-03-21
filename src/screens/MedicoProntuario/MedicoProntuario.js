@@ -7,23 +7,47 @@ import { MedicRecordButton } from "../../components/Button/Button";
 import { SubTitle } from "../../components/SubTitle/Styles";
 import { CardLinkText } from "../../components/Card/Style";
 import { Title } from "../../components/Title/Styles";
+import { useEffect, useRef, useState } from "react";
+import * as MediaLibrary from 'expo-media-library';
+import { Line } from "./Styles";
+import { Alert } from "react-native";
+import { OpenCamera } from "../../components/Camera/Camera";
 
 
 
 
+export const MedicRecord = ({ navigation }) => {
+    const [openCamera, setOpenCamera] = useState(false)
+    const [openModalPhoto, setOpenModalPhoto] = useState(false)
+    const cameraRef = useRef(null)
+    const [photo, setPhoto] = useState(null)
 
-export const MedicRecord = ({ navigation, route }) => {
-    const { photoUri } = route.params || {};
-    const[isPhoto,setIsPhoto] = useState(true)
+    async function CapturePhoto() {
+        if (cameraRef) {
+            const photo = await cameraRef.current.takePictureAsync();
+            setPhoto(photo.uri)
 
-    function onPressPhoto() {
-        navigation.navigate("CameraScreen");
-        setIsPhoto(true)
+            setOpenModalPhoto(true)
+        }
     }
 
-    function onPressCancel() {
-        setIsPhoto(false);
-        route.params = null
+    function ClearPhoto() {
+        setPhoto(null)
+
+        setOpenModalPhoto(false)
+    }
+
+    async function SavePhoto() {
+        if (photo) {
+            await MediaLibrary.createAssetAsync(photo)
+                .then(() => {
+                    Alert.alert('Sucesso', 'foto salva na galeria')
+                    setOpenModalPhoto(false)
+                    setOpenCamera(false)
+                }).catch(erro => {
+                    alert("Error ao processar foto")
+                })
+        }
     }
     return (
         <ContainerScrollView>
@@ -51,18 +75,32 @@ export const MedicRecord = ({ navigation, route }) => {
                 <GenericPrescriptionInput
                     textLabel={'Prescrição médica'}
                     placeholder={`Nenhuma foto informada`}
+                    img={photo}
                 />
 
                 <GenericProfileInputContainerRow>
-                    <MedicRecordButton placeholder={'Enviar'} />
-                    <CardLinkText> Cancelar </CardLinkText>
+                    <MedicRecordButton onPress={() => setOpenCamera(true)} placeholder={'Enviar'} />
+                    <CardLinkText onPress={() => setPhoto(null)}> Cancelar </CardLinkText>
                 </GenericProfileInputContainerRow>
+
+                <OpenCamera
+                    visibleCamera={openCamera}
+                    refCamera={cameraRef}
+                    openModalPhoto={openModalPhoto}
+                    onPressPhoto={() => CapturePhoto()}
+                    onPressCancel={() => ClearPhoto()}
+                    confirmPhoto={() => SavePhoto()}
+                    onPressExit={() => setOpenCamera(false)}
+                    photo={photo}
+                />
+
+                <Line />
 
                 <GenericTextArea
                     placeholder={`Resultado do exame de sangue : \ntudo normal`}
                 />
                 <ButtonSecondary
-                    onPress={() => navigation.navigate('HomePatient')}
+                    onPress={() => navigation.replace('Main')}
                     placeholder={'voltar'}
                 />
             </Container>
